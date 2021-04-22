@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+		<title>PWNAGE Scouting</title>
+		<script src="js/easy.qrcode.min.js"></script>
+		<script src="js/scouting.js"></script>
+		<script src="js/FRCComponents.js"></script>
+		<script src="js/teams.js"></script>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+
+	<body>
+		<form id="scoutingForm" onsubmit="return false">
+			<div id="main-panel-holder">
+				<div id="pre-match" class="main-panel">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">N</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Pre-Match</h2>
+					<p class="match-label"><input type="button" value="Next" onclick="swipePage(1)"></p>
+					<table>
+<tr><td class="title">Scouter Initials:&nbsp;</td><td class="field">
+<input id="input_s" type="text" name="s" size="5" maxlength="5" required></td></tr><tr><td class="title">Event Code:&nbsp;</td><td class="field">
+<input id="input_e" type="text" name="e" required value="2020ilch" disabled></td></tr>
+<tr><td class="title">Match Level:&nbsp;</td>
+<td class="field" onchange="updateMatchStart(event)">
+<input id="input_l_qm" type="radio" name="l" value="qm" checked> Quals<br>
+<input id="input_l_ef" type="radio" name="l" value="ef"> Eigth-Finals<br>
+<input id="input_l_qf" type="radio" name="l" value="qf"> Quarter-Finals<br>
+<input id="input_l_sf" type="radio" name="l" value="sf"> Semi-Finals<br>
+<input id="input_l_f" type="radio" name="l" value="f"> Finals
+<input id="display_l" hidden value =""></td></tr><tr><td class="title">Match Number:&nbsp;</td>
+<td class="field"><input id="input_m" type="number" name="m" min="1" max="200" required onchange="updateMatchStart(event)"></td></tr>
+<tr><td class="title">Robot Scouted:&nbsp;</td><td class="field" onchange="updateMatchStart(event)">
+<input id="input_r_r1" type="radio" name="r" value="r1"> Red-1
+<input id="input_r_b1" type="radio" name="r" value="b1"> Blue-1<br>
+<input id="input_r_r2" type="radio" name="r" value="r2"> Red-2
+<input id="input_r_b2" type="radio" name="r" value="b2"> Blue-2<br>
+<input id="input_r_r3" type="radio" name="r" value="r3"> Red-3
+<input id="input_r_b3" type="radio" name="r" value="b3"> Blue-3
+<input id="display_r" hidden value =""></td></tr><tr><td class="title">Team Number:&nbsp;</td>
+<td class="field"><input id="input_t" type="number" name="t" min="1" required readonly onchange="updateMatchStart(event)"></td></tr>
+<tr><td id="teamname-label" colspan="2" style="text-align: center;"></td></tr>
+<tr><td colspan="2" style="text-align: center;">Auto Start Position</td></tr>
+<tr><td colspan="2" style="text-align: center;"><canvas class="field-image-src" id="canvas_as" onclick="onFieldClick(event)">No canvas support</canvas></td></tr>
+<tr style="display:none"><td colspan="2"><input type="hidden" id="XY_as" value=""><input id="input_as" value="" hidden></td></tr>
+<tr style="display:none"><td colspan="2"><img onclick="onFieldClick(event)" id="img_as" class="field-image-src" src="resources/field_image.png" hidden></td></tr>
+					</table>
+					<p class="match-label"><input type="button" value="Next" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="auton" class="main-panel" style="background-color: #F76C6C;">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Auton</h2>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"> <input type="button" value="Next" onclick="swipePage(1)"></p>
+					<table>
+<tr><td class="title">Exit Line:</td>
+<td class="field"><input id="input_ae" type="checkbox" name="ae"> (checked = Yes)</td></tr><tr><td class="title">Lower Port Scores:&nbsp;</td>
+<td class="field"><button type="button" onclick="FRCComponents.counter(this.parentElement, -1)">-</button>
+<input type="text" id="input_al" class="counter" value="0" disabled size="2" maxlength="2" style="background-color: black; color: white;border: none; text-align: center;">
+<button type="button" onclick="FRCComponents.counter(this.parentElement, 1)">+</button></td></tr><tr><td class="title">Outer Port Scores:&nbsp;</td>
+<td class="field"><button type="button" onclick="FRCComponents.counter(this.parentElement, -1)">-</button>
+<input type="text" id="input_ao" class="counter" value="0" disabled size="2" maxlength="2" style="background-color: black; color: white;border: none; text-align: center;">
+<button type="button" onclick="FRCComponents.counter(this.parentElement, 1)">+</button></td></tr><tr><td class="title">Picked up more PC:</td>
+<td class="field"><input id="input_aa" type="checkbox" name="aa"> (checked = Yes)</td></tr><tr><td class="title">Trench Run:</td>
+<td class="field"><input id="input_at" type="checkbox" name="at"> (checked = Yes)</td></tr><tr><td class="title">Opponents Trench Run:</td>
+<td class="field"><input id="input_ax" type="checkbox" name="ax"> (checked = Yes)</td></tr>					</table>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"> <input type="button" value="Next" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="teleop" class="main-panel" style="background-color: #A8D0E6;">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Teleop</h2>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"><input type="button" value="Next" onclick="swipePage(1)"></p>
+					<table>
+<tr><td class="title">Lower Port Scores:&nbsp;</td>
+<td class="field"><button type="button" onclick="FRCComponents.counter(this.parentElement, -1)">-</button>
+<input type="text" id="input_lp" class="counter" value="0" disabled size="2" maxlength="2" style="background-color: black; color: white;border: none; text-align: center;">
+<button type="button" onclick="FRCComponents.counter(this.parentElement, 1)">+</button></td></tr><tr><td class="title">Outer Port Scores:&nbsp;</td>
+<td class="field"><button type="button" onclick="FRCComponents.counter(this.parentElement, -1)">-</button>
+<input type="text" id="input_op" class="counter" value="0" disabled size="2" maxlength="2" style="background-color: black; color: white;border: none; text-align: center;">
+<button type="button" onclick="FRCComponents.counter(this.parentElement, 1)">+</button></td></tr><tr><td class="title">Rotation Control:&nbsp;</td>
+<td class="field"><input id="input_rc_pass" type="radio" name="rc" value="P">Pass<br>
+<input id="input_rc_fail" type="radio" name="rc" value="F">Fail<br>
+<input id="input_rc_x" type="radio" name="rc" value="-" checked>Not Attempted<br>
+<input id="display_rc" hidden value =""></td></tr><tr><td class="title">Position Control:&nbsp;</td>
+<td class="field"><input id="input_pc_pass" type="radio" name="pc" value="P">Pass<br>
+<input id="input_pc_fail" type="radio" name="pc" value="F">Fail<br>
+<input id="input_pc_x" type="radio" name="pc" value="-" checked>Not Attempted<br>
+<input id="display_pc" hidden value =""></td></tr><tr><td colspan="2" style="text-align: center;">Shooting Spot</td></tr>
+<tr><td colspan="2" style="text-align: center;"><canvas class="field-image-src" id="canvas_ss" onclick="onFieldClick(event)">No canvas support</canvas></td></tr>
+<tr style="display:none"><td colspan="2"><input type="hidden" id="XY_ss" value=""><input id="input_ss" value="" hidden></td></tr>
+<tr style="display:none"><td colspan="2"><img onclick="onFieldClick(event)" id="img_ss" class="field-image-src" src="resources/field_image.png" hidden></td></tr>
+					</table>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"> <input type="button" value="Next" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="endgame" class="main-panel" style="background-color: #374785;">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Endgame</h2>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"><input type="button" value="Next" onclick="swipePage(1)"></p>
+					<table>
+<tr><td class="title">Climb:&nbsp;</td>
+<td class="field"><input id="input_c_pass" type="radio" name="c" value="P">Pass<br>
+<input id="input_c_fail" type="radio" name="c" value="F">Fail<br>
+<input id="input_c_x" type="radio" name="c" value="-" checked>Not Attempted<br>
+<input id="display_c" hidden value =""></td></tr><tr><td class="title">Balanced:</td>
+<td class="field"><input id="input_b" type="checkbox" name="b"> (checked = Yes)</td></tr>
+<tr><td class="title">Climb Assist:&nbsp;</td>
+<td class="field"><input id="input_ca_x" type="radio" name="ca" value="-" checked>Not Attempted<br>
+<input id="input_ca_a" type="radio" name="ca" value="a">Lifted another robot<br>
+<input id="input_ca_l" type="radio" name="ca" value="l">Lifted by another robot<br>
+<input id="input_ca_f" type="radio" name="ca" value="f">Failed buddy climb
+<input id="display_ca" hidden value =""></td></tr><tr><td class="title">Balanced after climb:&nbsp;</td>
+<td class="field"><input id="input_cb_pass" type="radio" name="cb" value="P">Pass<br>
+<input id="input_cb_fail" type="radio" name="cb" value="F">Fail<br>
+<input id="input_cb_x" type="radio" name="cb" value="-" checked>Not Attempted<br>
+<input id="display_cb" hidden value =""></td></tr><tr><td class="title"># of alliance bots climbed:&nbsp;</td>
+<td class="field"><button type="button" onclick="FRCComponents.counter(this.parentElement, -1)">-</button>
+<input type="text" id="input_cn" class="counter" value="0" disabled size="2" maxlength="2" style="background-color: black; color: white;border: none; text-align: center;">
+<button type="button" onclick="FRCComponents.counter(this.parentElement, 1)">+</button></td></tr><tr><td class="title">Climber Speed:&nbsp;</td>
+<td class="field"><input id="input_cs_slow" type="radio" name="cs" value="S">Slow<br>
+<input id="input_cs_medium" type="radio" name="cs" value="M">Medium<br>
+<input id="input_cs_fast" type="radio" name="cs" value="F">Fast<br>
+<input id="input_cs_x" type="radio" name="cs" value="-" checked>Not Attempted<br>
+<input id="display_cs" hidden value =""></td></tr><tr><td class="title">Parked:</td>
+<td class="field"><input id="input_p" type="checkbox" name="p"> (checked = Yes)</td></tr>					</table>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"> <input type="button" value="Next" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="post-match" class="main-panel" style="background-color: #f839a1;">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Miscellaneous</h2>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"><input type="button" value="Next" onclick="swipePage(1)"></p>
+					<table>
+<tr><td class="title">Driver Skill:&nbsp;</td>
+<td class="field"><input id="input_ds_n" type="radio" name="ds" value="N">Not Effective<br>
+<input id="input_ds_a" type="radio" name="ds" value="A">Average<br>
+<input id="input_ds_v" type="radio" name="ds" value="V">Very Effective<br>
+<input id="input_ds_x" type="radio" name="ds" value="-" checked>Not Observed<br>
+<input id="display_ds" hidden value =""></td></tr><tr><td class="title">Defense Rating:&nbsp;</td>
+<td class="field"><input id="input_dr_n" type="radio" name="dr" value="N">Not Effective<br>
+<input id="input_dr_a" type="radio" name="dr" value="A">Average<br>
+<input id="input_dr_v" type="radio" name="dr" value="V">Very Effective<br>
+<input id="input_dr_x" type="radio" name="dr" value="-" checked>Not Observed<br>
+<input id="display_dr" hidden value =""></td></tr><tr><td class="title">Pick up PC where:&nbsp;</td>
+<td class="field"><input id="input_pl_load" type="radio" name="pl" value="L">Loading Bay<br>
+<input id="input_pl_ground" type="radio" name="pl" value="G">Ground<br>
+<input id="input_pl_both" type="radio" name="pl" value="B">Both<br>
+<input id="input_pl_x" type="radio" name="pl" value="-" checked>Not Attempted<br>
+<input id="display_pl" hidden value =""></td></tr><tr><td class="title">Entered Trench Zone:</td>
+<td class="field"><input id="input_tr" type="checkbox" name="tr"> (checked = Yes)</td></tr><tr><td class="title">Was Defended:</td>
+<td class="field"><input id="input_wd" type="checkbox" name="wd"> (checked = Yes)</td></tr><tr><td class="title">Inward Focus:</td>
+<td class="field"><input id="input_if" type="checkbox" name="if"> (checked = Yes)</td></tr><tr><td class="title">Died:</td>
+<td class="field"><input id="input_d" type="checkbox" name="d"> (checked = Yes)</td></tr><tr><td class="title">Tipped Over:</td>
+<td class="field"><input id="input_to" type="checkbox" name="to"> (checked = Yes)</td></tr><tr><td class="title">Yellow/Red Card:</td>
+<td class="field"><input id="input_cf" type="checkbox" name="cf"> (checked = Yes)</td></tr><tr><td class="title">Comments:&nbsp;</td><td class="field">
+<input id="input_co" type="text" name="co" size="15" maxlength="50" value=""></td></tr>					</table>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"> <input type="button" value="Next" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="qr-code" class="main-panel">
+					<h1><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Generate QR Code</h2>
+					<p class="match-label"><input type="button" value="Prev" onclick="swipePage(-1)"></p>
+					<p id="qr-info"><span id="display_qr-info" style="border: none; text-align: center;"></span></p>
+					<table id="qr-table"><tr><td width="5%">&nbsp;</td><td width="90%">
+						<div id="qrcode" style="text-align:center">
+							<script>
+						// Create QRCode Object
+						qr = new QRCode(document.getElementById("qrcode"), options)
+					</script>
+					</div>
+				</td><td width="5%">&nbsp;</td></tr></table>
+					<p></p>
+					<div id="clearButton">
+						<button type="button" onclick="clearForm()">Clear Form</button>
+					</div>
+					<br>
+				</div>
+			</div>
+		</body>
+	</form>
+</html>
