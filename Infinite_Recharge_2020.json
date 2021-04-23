@@ -1,0 +1,184 @@
+{
+  "filename":"InfiniteRecharge2020.html",
+  "title":"Infinite Recharge 2020",
+  "version":"0.9",
+  "elements":{
+    "pre-match": {
+      "Scouter Initials": {
+        "type":"scouter"
+      },
+      "Event":{
+        "type":"event"
+      },
+      "Match Level":{
+        "type":"level"
+      },
+      "Match #":{
+        "type":"match"
+      },
+      "Robot": {
+        "type":"robot"
+      },
+      "Team #": {
+        "type":"team"
+      },
+      "Auto Start": {
+        "name":"as",
+        "title": "Auto Start Position",
+        "type":"field_image"
+      }
+    },
+    "auton": {
+      "Exit line": {
+        "name":"ae",
+        "title": "Exit Line",
+        "type":"bool",
+        "default":false
+      },
+      "Lower Port": {
+        "name":"al",
+        "title": "Lower Port Scores",
+        "type":"counter"
+      },
+      "Outer Port": {
+        "name":"ao",
+        "title": "Outer Port Scores",
+        "type":"counter"
+      },
+      "Auto Aquire PCs": {
+        "name":"aa",
+        "title": "Picked up more PC",
+        "type":"bool"
+      },
+      "Trench Run Auto": {
+        "name":"at",
+        "title": "Trench Run",
+        "type":"bool"
+      },
+      "Opp Trench Run Auto": {
+        "name":"ax",
+        "title": "Opponents Trench Run",
+        "type":"bool"
+      }
+    },
+    "teleop": {
+      "Lower Port": {
+        "name":"lp",
+        "title": "Lower Port Scores",
+        "type":"counter"
+      },
+      "Outer Port": {
+        "name":"op",
+        "title": "Outer Port Scores",
+        "type":"counter"
+      },
+      "Rotation Control": {
+        "name":"rc",
+        "title": "Rotation Control",
+        "type":"pass_fail"
+      },
+      "Position Control": {
+        "name":"pc",
+        "title": "Position Control",
+        "type":"pass_fail"
+      },
+      "Shooting Spot": {
+        "name":"ss",
+        "title": "Shooting Spot",
+        "type":"field_image"
+      }
+    },
+    "endgame": {
+      "Climb": {
+        "name":"c",
+        "title": "Climb",
+        "type":"pass_fail"
+      },
+      "Balanced": {
+        "name":"b",
+        "title": "Balanced",
+        "type":"bool"
+      },
+      "Climb Assist": {
+        "name":"ca",
+        "title": "Assisted Climb",
+        "type":"climb_assist"
+      },
+      "Balanced After Climb": {
+        "name":"cb",
+        "title": "Balanced after climb",
+        "type":"pass_fail"
+      },
+      "Num of Robots Climbed": {
+        "name":"cn",
+        "title": "# of alliance bots climbed",
+        "type":"counter"
+      },
+      "Climb Speed": {
+        "name":"cs",
+        "title": "Climber Speed",
+        "type":"speed"
+      },
+      "Parked": {
+        "name":"p",
+        "title": "Parked",
+        "type":"bool"
+      }
+    },
+    "post-match": {
+      "Driver Skill": {
+        "name":"ds",
+        "title": "Driver Skill",
+        "type":"skill"
+      },
+      "Defense Rating": {
+        "name":"dr",
+        "title": "Defense Rating",
+        "type":"skill"
+      },
+      "PC Loading": {
+        "name":"pl",
+        "title": "Pick up PC where",
+        "type":"pc_load"
+      },
+      "Entered Trench Zone": {
+        "name":"tr",
+        "title": "Entered Trench Zone",
+        "type":"bool",
+        "default":false
+      },
+      "Was Defended": {
+        "name":"wd",
+        "title": "Was Defended",
+        "type":"bool"
+      },
+      "Inward Focus": {
+        "name":"if",
+        "title": "Inward Focus",
+        "type":"bool",
+        "default":false
+      },
+      "Died": {
+        "name":"d",
+        "title": "Died",
+        "type":"bool",
+        "default":false
+      },
+      "Tipped": {
+        "name":"to",
+        "title": "Tipped Over",
+        "type":"bool"
+      },
+      "Card Foul": {
+        "name":"cf",
+        "title": "Yellow/Red Card",
+        "type":"bool"
+      },
+      "Comments": {
+        "name":"co",
+        "title": "Comments",
+        "type":"comment"
+      }
+    }
+  }
+}
