@@ -21,6 +21,8 @@
 <tr><td class="title">Scouter Initials:&nbsp;</td><td class="field">
 <input id="input_s" type="text" name="s" size="5" maxlength="5" required></td></tr><tr><td class="title">Event Code:&nbsp;</td><td class="field">
 <input id="input_e" type="text" name="e" required value="2020ilch" disabled></td></tr>
+<input id="display_l" hidden value =""></td></tr><tr><td class="title">Grade:&nbsp;</td>
+<td class="field"><input id="input_m" type="number" name="m" min="8" max="12" required onchange="updateMatchStart(event)"></td></tr>
 <tr><td class="title">Match Level:&nbsp;</td>
 <td class="field" onchange="updateMatchStart(event)">
 <input id="input_l_qm" type="radio" name="l" value="qm" checked> Quals<br>
