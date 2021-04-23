@@ -7,10 +7,13 @@
       "Scouter Initials": {
         "type":"scouter"
       },
+            "Grade #":{
+        "type":"Grade"
+      },
       "Event":{
         "type":"event"
       },
-      "Match Level":{
+      "Level":{
         "type":"level"
       },
       "Match #":{
